@@ -49,7 +49,7 @@ module.exports = (compile) => ({
     const params = R.init(elems);
     const expression = R.pipe(
       R.last,
-      toJs,
+      compile,
       R.split('\n'),
       R.ifElse(
         (x) => 1 === R.length(x),
