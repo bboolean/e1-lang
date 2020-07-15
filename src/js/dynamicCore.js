@@ -57,7 +57,18 @@ module.exports = (compile) => ({
     return `require(${R.join(', ', elems)})`;
   },
   core_readline: (elems) => {
-    return `readline.question(${R.join(', ', elems)})`;
+    return `(() => {
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+readline.question(${compile(R.head(elems))}, (text) => {
+  readline.close();
+
+  ${compile(R.last(elems))}(text);
+});
+})()`;
   },
   core_toNum: (elems) => {
     return `(+${R.join(' ', elems)})`;

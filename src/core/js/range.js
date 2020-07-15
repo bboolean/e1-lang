@@ -1,5 +1,5 @@
 const core_range = core_curry3((a, b, c = 1) => {
-  const core_result = [];
+  const result = [];
   for (let i = a; i <= b; i += c) {
     result.push(i);
   }

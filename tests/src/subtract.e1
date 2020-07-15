@@ -1,0 +1,6 @@
+subTwo (- 2)
+
+($
+  (log (subTwo 10))
+  (log (- 5 4))
+)
