@@ -1,0 +1,118 @@
+turn 'x'
+
+board (|
+  (range 1 9)
+  (map '_')
+)
+
+wins [
+  [0 1 2]
+  [3 4 5]
+  [6 7 8]
+  [0 3 6]
+  [1 4 7]
+  [2 5 8]
+  [0 4 8]
+  [2 4 6]
+]
+
+getCellNum (# id n (|
+  id
+  (* 3)
+  (+ n)
+))
+
+printBoard (|
+  (splitEvery 3)
+  (imap
+    (# val id
+      (++
+        (join ' ' val)
+        '      '
+        (getCellNum id 1)
+        ' '
+        (getCellNum id 2)
+        ' '
+        (getCellNum id 3)
+      )
+    )
+  )
+  (join '\n')
+  (# text (++ '\n' text '\n'))
+)
+
+printBoardAndPrompt (# board turn
+  ($
+    (log (printBoard board))
+    (readline
+      (++ turn "'s turn> ")
+      (logic board turn)
+    )
+  )
+)
+
+validMove (# board num
+  (let
+    isEmpty (= '_' (view (lensIndex num) board))
+    
+    between1And9 (& (>= num 0) (<= num 8))
+    
+    (& isEmpty between1And9)
+  )
+)
+
+findIfWon (# board turn
+  (let
+    allEqTurn (all
+      (# cell
+        (let
+          value (view (lensIndex cell) board)
+          
+          (= turn value)
+        )
+      )
+    )
+    
+    (any allEqTurn wins)
+  )
+)
+
+logic (# board turn
+  (# n
+    (let
+      num (- (toNum n) 1)
+      
+      valid (validMove board num)
+      
+      newBoard (set num turn board)
+      
+      won (findIfWon newBoard turn)
+      
+      newTurn (if (= 'x' turn) 'o' 'x')
+      
+      (if
+        won
+        (log
+          (++
+            (printBoard newBoard)
+            '\nWe have a winner: '
+            turn
+          )
+        )
+        (if
+          valid
+          (printBoardAndPrompt newBoard newTurn)
+          ($
+            (log '\n### Not a valid move ###')
+            (printBoardAndPrompt board turn)
+          )
+        )
+      )
+    )
+  )
+)
+
+($
+  (log 'Welcome to Tic-Tac-Toe!')
+  (printBoardAndPrompt board turn)
+)

@@ -1,0 +1,18 @@
+numbers (range 1 100)
+
+mapped (map
+  (# num
+    (let
+      fizz (if (= 0 (% num 3)) 'Fizz' '')
+      
+      buzz (if (= 0 (% num 5)) 'Buzz' '')
+      
+      numText (if (or fizz buzz) '' num)
+      
+      (++ fizz buzz numText)
+    )
+  )
+  numbers
+)
+
+($ (map log mapped))

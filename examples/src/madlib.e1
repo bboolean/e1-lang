@@ -1,0 +1,19 @@
+noun "fish"
+
+adjective "blue"
+
+verb "throw"
+
+sentence (# noun adjective verb
+  (++
+    "A "
+    noun
+    " went to the "
+    adjective
+    " store to "
+    verb
+    " some blueberries."
+  )
+)
+
+(log (sentence noun adjective verb))

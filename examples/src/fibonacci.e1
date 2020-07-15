@@ -1,0 +1,9 @@
+fibonacci (# a b last
+  (if
+    (< b last)
+    ($ (log a) (fibonacci b (+ a b) last))
+    (log 'done')
+  )
+)
+
+(fibonacci 0 1 100)

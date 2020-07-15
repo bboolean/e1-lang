@@ -1,0 +1,11 @@
+toCelsius (|
+  (- 32)
+  (* (/ 5 9))
+)
+
+toFahrenheit (|
+  (* (/ 9 5))
+  (+ 32)
+)
+
+(toCelsius 212)

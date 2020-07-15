@@ -1,0 +1,22 @@
+{
+  "name": "e1-lang",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^7.1.6",
+    "jest": "^26.1.0",
+    "node-watch": "^0.6.4",
+    "picompiler": "^0.4.0",
+    "ramda": "^0.27.0"
+  },
+  "bin": {
+    "e1": "./bin/index.js"
+  },
+  "preferGlobal": true
+}

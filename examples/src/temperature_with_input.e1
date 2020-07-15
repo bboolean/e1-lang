@@ -1,0 +1,41 @@
+toCelsius (->
+  (- 32)
+  (* (/ 5 9))
+)
+
+toFahrenheit (->
+  (* (/ 9 5))
+  (+ 32)
+)
+
+proc (# input
+  (let
+    num (toNum input)
+    
+    celsiusText (->
+      num
+      toCelsius
+      (# x (++ "\n" num "°F is " x "°C"))
+    )
+    
+    fahrenheitText (->
+      num
+      toFahrenheit
+      (# x (++ "\n" num "°C is " x "°F"))
+    )
+    
+    ($
+      (log (++ celsiusText fahrenheitText))
+      (prompt)
+    )
+  )
+)
+
+prompt (#
+  (readline
+    "\nPlease enter an number> "
+    proc
+  )
+)
+
+(prompt)
