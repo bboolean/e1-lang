@@ -59,6 +59,9 @@ module.exports = [
   { value: '#', replace: 'core_function' },
   { value: '$', replace: 'core_commands' },
 
+  { value: 'true', replace: 'True' },
+  { value: 'false', replace: 'False' },
+
   { value: 'splitEvery', isCore: true },
   { value: 'join', isCore: true },
   { value: 'all', isCore: true },
