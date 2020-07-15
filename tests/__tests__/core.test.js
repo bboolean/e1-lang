@@ -17,7 +17,7 @@ const run = (name, text, done) => {
 };
 
 test('add', (done) => {
-  run('add', '7', done);
+  run('add', '12\n7', done);
 });
 
 test('concat', (done) => {
