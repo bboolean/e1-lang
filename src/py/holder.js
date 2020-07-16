@@ -3,15 +3,15 @@ module.exports = (
   core,
   almondtree,
   compile,
-  tokens,
-  dynamicCore
+  config,
+  lang
 ) => {
   const ast = almondtree(
-    `(let program (let ${text}) (if program (log program) program ''))`,
-    { tokens }
+    `(let program (let ${text}) program)`,
+    config
   );
 
-  const main = compile(ast, dynamicCore);
+  const main = compile(ast, config.languages[lang]);
 
   return `import types
   
@@ -23,5 +23,8 @@ curry2 = lambda fn : (
 
 ${core}
 
-${main}`;
+${main}
+
+if None != program:
+  core_log(program)`;
 };

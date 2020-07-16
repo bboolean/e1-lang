@@ -1,7 +1,9 @@
-const dynamicCore = require('./dynamicCore');
+const dynamicFunctions = require('./dynamicFunctions');
+const dynamicTokens = require('./dynamicTokens');
 const holder = require('./holder');
 
 module.exports = {
-  dynamicCore,
+  dynamicFunctions,
+  dynamicTokens,
   holder,
 };

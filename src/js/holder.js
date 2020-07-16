@@ -3,12 +3,11 @@ module.exports = (
   core,
   almondtree,
   compile,
-  tokens,
-  dynamicCore
+  config
 ) => {
-  const ast = almondtree(`(let ${text})`, { tokens });
+  const ast = almondtree(`(let ${text})`, config);
 
-  const main = compile(ast, dynamicCore);
+  const main = compile(ast, config.languages.js);
 
   return `const core_curry2 = (fn) => (a, b) =>
   undefined !== b ? fn(a, b) : (b) => fn(a, b);
