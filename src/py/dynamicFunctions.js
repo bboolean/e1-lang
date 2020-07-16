@@ -69,6 +69,8 @@ module.exports = (compile) => ({
 
     const r = newNum();
 
+    const sec = false;
+
     return `def ${sec || r}(${R.join(
       ', ',
       params

@@ -24,6 +24,6 @@ ${core}
 const main = ${main};
 
 if (!['undefined', 'function'].includes(typeof main)) {
-  console.log(main);
+  core_log(main);
 }`;
 };
