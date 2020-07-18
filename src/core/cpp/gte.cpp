@@ -3,5 +3,5 @@ Box* core_gte(Box *a, Box *b) {
 };
 
 auto core_gte(Box *a) {
-  return [a] (Box *b)->Box* {return core_gt(a, b);};
+  return [a] (Box *b)->Box* {return core_gte(a, b);};
 }

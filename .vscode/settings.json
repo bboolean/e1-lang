@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "*.e1": "clojure",
+    "random": "cpp"
+  }
+}

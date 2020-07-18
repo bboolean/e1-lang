@@ -7,4 +7,6 @@ module.exports = [
       /[\d.]+/.test(a),
     (a) => `new Box(${a.replace(/'/g, '"')})`,
   ],
+  [R.equals('true'), R.always('new Box(true, true)')],
+  [R.equals('false'), R.always('new Box(false, true)')],
 ];

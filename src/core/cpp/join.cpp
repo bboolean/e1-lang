@@ -11,6 +11,7 @@ Box* core_join(Box *joiner, Box *list)
   }
   return new Box(result);
 };
+
 auto core_join(Box *a) {
   return [a] (Box *b)->Box* {return core_join(a, b);};
 }

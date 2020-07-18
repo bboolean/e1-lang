@@ -27,7 +27,7 @@ module.exports = (compile) => ({
       R.join(';')
     )(elems);
 
-    return `[=] {\n${components};\n}();`;
+    return `[=] {\n${components};\nreturn new Box();}();`;
   },
   core_function: (elems) => {
     const params = R.pipe(
