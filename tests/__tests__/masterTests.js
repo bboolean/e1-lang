@@ -23,6 +23,10 @@ module.exports = (lang, command) => {
       run('concat', 'Thisisa100test', done);
     });
 
+    test('function', (done) => {
+      run('function', '[2 3 4]', done);
+    });
+
     test('gt', (done) => {
       run('gt', 'true\nfalse', done);
     });

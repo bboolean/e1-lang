@@ -13,6 +13,32 @@ const ilast = (a, b) => {
   return `${f}\n${a}${l}`;
 };
 
+const core_function = (elems, sec) => {
+  const params = R.init(elems);
+  const expression = R.pipe(
+    R.last,
+    compile,
+    R.split('\n'),
+    R.ifElse(
+      (x) => 1 === R.length(x),
+      (x) => ['  ' + x[0]],
+      R.map((x) => '  ' + x)
+    ),
+    R.join('\n')
+  )(elems);
+
+  const p = expression.split('\n');
+  const defs = R.join('\n', R.init(p));
+  const last = '  return' + R.last(p);
+
+  const r = newNum();
+
+  return `def ${sec || r}(${R.join(
+    ', ',
+    params
+  )}): \n${defs}\n${last}\n${sec ? '' : `${r}`}`;
+};
+
 module.exports = (compile) => ({
   core_let: (elems) => {
     const dfg = elems.length
@@ -22,7 +48,7 @@ module.exports = (compile) => ({
     const keys = R.pipe(
       R.map(([a, b]) => {
         if ('#' === b[0]) {
-          return compile(b, a);
+          return core_function(R.tail(b), a);
         } else {
           return ilast(`${a} = `, compile(b));
         }
@@ -45,37 +71,7 @@ module.exports = (compile) => ({
 
     return `${components};`;
   },
-  core_function: (elems) => {
-    const params = R.init(elems);
-    const expression = R.pipe(
-      R.last,
-      compile,
-      R.split('\n'),
-      R.ifElse(
-        (x) => 1 === R.length(x),
-        (x) => ['  ' + x[0]],
-        R.map((x) => '  ' + x)
-      ),
-      R.join('\n')
-    )(elems);
-
-    // console.log(components, params, expression);
-
-    // console.log(expression);
-
-    const p = expression.split('\n');
-    const defs = R.join('\n', R.init(p));
-    const last = '  return' + R.last(p);
-
-    const r = newNum();
-
-    const sec = false;
-
-    return `def ${sec || r}(${R.join(
-      ', ',
-      params
-    )}): \n${defs}\n${last}\n${sec ? '' : `${r}`}`;
-  },
+  core_function,
   core_list: (elems) => {
     const components = R.pipe(
       R.map(compile),
