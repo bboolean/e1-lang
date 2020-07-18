@@ -3,7 +3,7 @@ void _core_log(shared_ptr<Box> a, bool child = false) {
     cout << a->double_leaf;
   } else if (1 == a->type) {
     if (child) {
-      cout << '"' << a->string_leaf << '"';
+      cout << "'" << a->string_leaf << "'";
     } else {
       cout << a->string_leaf;
     }

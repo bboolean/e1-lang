@@ -13,7 +13,7 @@ const ilast = (a, b) => {
   return `${f}\n${a}${l}`;
 };
 
-const core_function = (elems, sec) => {
+const core_function = (compile) => (elems, sec) => {
   const params = R.init(elems);
   const expression = R.pipe(
     R.last,
@@ -71,7 +71,7 @@ module.exports = (compile) => ({
 
     return `${components};`;
   },
-  core_function,
+  core_function: core_function(compile),
   core_list: (elems) => {
     const components = R.pipe(
       R.map(compile),
