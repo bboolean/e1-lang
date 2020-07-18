@@ -7,7 +7,7 @@ module.exports = (
 ) => {
   const ast = almondtree(`(let ${text})`, config);
 
-  const main = compile(ast, config.languages.js);
+  const main = compile(ast, config.languages.cpp);
 
   return `#include <iostream>
 #include <string>
@@ -37,6 +37,12 @@ class Box {
     int size = 0;
 
     Box() {}
+    Box(bool a, bool isBool) {
+      leaf = true;
+      type = 3;
+      double_leaf = a;
+      string_leaf = a ? "true" : "false";
+    }
     Box(double a) {
       leaf = true;
       type = 0;
@@ -89,9 +95,40 @@ class Box {
     }
 };
 
+void _core_log(Box *a, bool child = false) {
+  if (0 == a->type) {
+    cout << a->double_leaf;
+  } else if (1 == a->type) {
+    if (child) {
+      cout << '"' << a->string_leaf << '"';
+    } else {
+      cout << a->string_leaf;
+    }
+  } else if (2 == a->type) {
+    cout << "[ ";
+
+    for(auto i=0; i < a->size; i++) {
+      _core_log(a->indexes[i], true);
+      cout << ' ';
+    }
+
+    cout << ']';
+  } else if (3 == a->type) {
+    cout << a->string_leaf;
+  }
+}
+void core_log(Box *a) {
+  _core_log(a);
+  cout << endl;
+}
+
+
+${core}
+
 int main() { 
-  auto mainprogram = ${main};
-  log(mainprogram);
+  //auto mainprogram = 
+  ${main};
+  //core_log(mainprogram);
   return 0; 
 }`;
 };

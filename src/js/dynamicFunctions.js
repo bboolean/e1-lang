@@ -18,7 +18,7 @@ module.exports = (compile) => ({
     const theReturn =
       elems.length % 2 === 0 ? "''" : compile(expression);
 
-    return `(()=>{\n${assignments}\nreturn ${theReturn};\n})()`;
+    return `(()=1>{\n${assignments}\nreturn ${theReturn};\n})()`;
   },
   core_commands: (elems) => {
     const components = R.pipe(
