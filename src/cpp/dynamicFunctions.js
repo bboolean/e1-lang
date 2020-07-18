@@ -2,23 +2,24 @@ const R = require('ramda');
 
 module.exports = (compile) => ({
   core_let: (elems) => {
-    const assignments = elems.length
+    const assignments = components.length
       ? R.pipe(
           R.init,
           R.splitEvery(2),
           R.map(
-            ([key, value]) => `${key} = ${compile(value)};`
+            ([key, value]) =>
+              `auto ${key}=${toJs(value)};\n`
           ),
-          R.join(' ')
+          R.join('')
         )(elems)
       : '';
 
     const expression = R.last(elems);
 
     const theReturn =
-      elems.length % 2 === 0 ? "''" : compile(expression);
+      elems.length % 2 === 0 ? "''" : toJs(expression);
 
-    return `(()=>{\n${assignments}\nreturn ${theReturn};\n})()`;
+    return `[=] {\n${assignments} return ${theReturn};\n}();`;
   },
   core_commands: (elems) => {
     const components = R.pipe(
@@ -29,26 +30,29 @@ module.exports = (compile) => ({
     return `(()=>{\n${components}\n})()`;
   },
   core_function: (elems) => {
-    const params = R.init(elems);
+    const params = R.pipe(
+      R.init,
+      R.map((s) => 'auto ' + s),
+      R.join(',')
+    )(elems);
     const expression = R.last(elems);
 
-    return `(${R.join(', ', params)}) => ${compile(
-      expression
-    )}`;
+    // console.log(components, params, expression);
+
+    return `[=] (${params}) {return ${toJs(expression)};}`;
   },
   core_list: (elems) => {
-    const components = R.pipe(
-      R.map(compile),
-      R.join(', ')
-    )(elems);
-
-    return `[${components}]`;
+    return `new Box(vector<Box*>{${R.join(
+      ', ',
+      R.map(toJs, elems)
+    )}})`;
   },
   core_hashmap: (elems) => {
     const components = R.pipe(
+      R.tail,
       R.splitEvery(2),
-      R.map(([key, value]) => `${key}: ${compile(value)}`),
-      R.join(', ')
+      R.map(([key, value]) => `${key}:${toJs(value)}`),
+      R.join(',')
     )(elems);
 
     return `{${components}}`;
@@ -72,5 +76,10 @@ readline.question(${compile(R.head(elems))}, (text) => {
   },
   core_toNum: (elems) => {
     return `(+${R.join(' ', elems)})`;
+  },
+  core_if: (elems) => {
+    return `(${toJs(elems[0])} ? ${toJs(elems[1])} : ${toJs(
+      elems[2]
+    )})`;
   },
 });

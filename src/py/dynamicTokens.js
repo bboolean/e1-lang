@@ -1,3 +1,6 @@
 const R = require('ramda');
 
-module.exports = { true: 'True', false: 'False' };
+module.exports = [
+  [R.equals('true'), R.always('True')],
+  [R.equals('false'), R.always('False')],
+];

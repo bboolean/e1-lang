@@ -1,3 +1,3 @@
 const R = require('ramda');
 
-module.exports = {};
+module.exports = [];
