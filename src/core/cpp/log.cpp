@@ -1,4 +1,4 @@
-void _core_log(Box *a, bool child = false) {
+void _core_log(shared_ptr<Box> a, bool child = false) {
   if (0 == a->type) {
     cout << a->double_leaf;
   } else if (1 == a->type) {
@@ -23,10 +23,10 @@ void _core_log(Box *a, bool child = false) {
   }
 }
 
-Box* core_log(Box *a) {
+shared_ptr<Box>  core_log(shared_ptr<Box> a) {
   _core_log(a);
   if (4 != a->type) {
     cout << endl;
   }
-  return new Box();
+  return make_shared<Box>();
 }

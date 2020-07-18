@@ -1,7 +1,7 @@
-void readline(Box *text, auto fn) 
+void readline(shared_ptr<Box> text, auto fn) 
 {
   cout << text->string_leaf;
   string input;
   getline(cin, input);
-  fn(new Box(input));
+  fn(make_shared<Box>(input));
 };

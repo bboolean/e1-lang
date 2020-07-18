@@ -1,3 +1,3 @@
-Box* core_length(Box *a) {
-  return new Box(a->size);
+shared_ptr<Box>  core_length(shared_ptr<Box> a) {
+  return make_shared<Box>(a->size);
 };

@@ -1,8 +1,8 @@
-auto core_divide(Box *a) 
+auto core_divide(shared_ptr<Box> a) 
 {
-  return [a] (Box *b) {return new Box(b->double_leaf / a->double_leaf);};
+  return [a] (shared_ptr<Box> b) {return make_shared<Box>(b->double_leaf / a->double_leaf);};
 }
-auto core_divide(Box *a, Box *b) 
+auto core_divide(shared_ptr<Box> a, shared_ptr<Box> b) 
 {
-  return new Box(a->double_leaf / b->double_leaf);
+  return make_shared<Box>(a->double_leaf / b->double_leaf);
 }

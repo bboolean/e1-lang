@@ -1,5 +1,5 @@
-Box* core_map(auto fn, Box *a) {
-  Box *result = new Box();
+shared_ptr<Box>  core_map(auto fn, shared_ptr<Box> a) {
+  shared_ptr<Box> result = make_shared<Box>();
   result->leaf = false;
   result->type = 2;
   result->size = a->size;
@@ -8,8 +8,8 @@ Box* core_map(auto fn, Box *a) {
   }
   return result;
 };
-Box* core_map(Box *b, Box *a) {
-  Box *result = new Box();
+shared_ptr<Box>  core_map(shared_ptr<Box> b, shared_ptr<Box> a) {
+  shared_ptr<Box> result = make_shared<Box>();
   result->leaf = false;
   result->type = 2;
   result->size = a->size;
@@ -19,8 +19,8 @@ Box* core_map(Box *b, Box *a) {
   return result;
 };
 auto core_map(auto fn) {
-  return [fn] (Box *b)->Box* {return core_map(fn, b);};
+  return [fn] (shared_ptr<Box> b)->shared_ptr<Box>  {return core_map(fn, b);};
 }
-auto core_map(Box *a) {
-  return [a] (Box *b)->Box* {return core_map(a, b);};
+auto core_map(shared_ptr<Box> a) {
+  return [a] (shared_ptr<Box> b)->shared_ptr<Box>  {return core_map(a, b);};
 }

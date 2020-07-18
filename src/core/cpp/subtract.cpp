@@ -1,7 +1,7 @@
-auto core_subtract(Box *a) {
-  return [a] (Box *b) {return new Box(b->double_leaf - a->double_leaf);};
+auto core_subtract(shared_ptr<Box> a) {
+  return [a] (shared_ptr<Box> b) {return make_shared<Box>(b->double_leaf - a->double_leaf);};
 }
 
-auto core_subtract(Box *a, Box *b) {
-  return new Box(a->double_leaf - b->double_leaf);
+auto core_subtract(shared_ptr<Box> a, shared_ptr<Box> b) {
+  return make_shared<Box>(a->double_leaf - b->double_leaf);
 }

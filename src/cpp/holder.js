@@ -29,8 +29,8 @@ using namespace std;
 
 class Box {
   public:
-    map<string, Box*> children;
-    map<int, Box*> indexes;
+    map<string, shared_ptr<Box> > children;
+    map<int, shared_ptr<Box> > indexes;
     bool leaf;
     int type;
     string string_leaf;
@@ -70,13 +70,13 @@ class Box {
       string_leaf = a;
       bool_leaf = string_leaf.length() > 0;
     }
-    Box(vector<Box *> a) {
+    Box(vector<shared_ptr<Box> > a) {
       type = 2;
       leaf = false;
       size = a.size();
 
       for (int i = 0; i < a.size(); i++) {
-        Box *p = a.at(i);
+        shared_ptr<Box> p = a.at(i);
         // children[to_string(i)] = p;
         indexes[i] = p;
       }
@@ -86,7 +86,7 @@ class Box {
       size = a.size();
 
       for (int i = 0; i < a.size(); i++) {
-        Box *p = new Box(b[i]);
+        shared_ptr<Box> p = make_shared<Box>(b[i]);
         children[a[i]] = p;
         indexes[i] = p;
       }
@@ -100,12 +100,12 @@ class Box {
     // }
 
     // Box getChild(int i) {
-    //   Box * child = indexes[i];
+    //   shared_ptr<Box>  child = indexes[i];
 
     //   return *child;
     // }
 
-    void push(Box *a) {
+    void push(shared_ptr<Box> a) {
       indexes[size] = a;
       size++;
     }

@@ -1,12 +1,12 @@
-Box* core_splitEvery(Box *SectionSize, Box *List) 
+shared_ptr<Box>  core_splitEvery(shared_ptr<Box> SectionSize, shared_ptr<Box> List) 
 {
-  Box *result = new Box();
+  shared_ptr<Box> result = make_shared<Box>();
   result->leaf = false;
   result->type = 2;
   result->size = 0;
   int i = 0;
   while (i < List->size) {
-    Box *section = new Box();
+    shared_ptr<Box> section = make_shared<Box>();
     section->leaf = false;
     section->type = 2;
     for (int j = 0; j < SectionSize->double_leaf; j++) {
@@ -25,6 +25,6 @@ Box* core_splitEvery(Box *SectionSize, Box *List)
   return result;
 };
 
-auto core_splitEvery(Box *a) {
-  return [a] (Box *b)->Box* {return core_splitEvery(a, b);};
+auto core_splitEvery(shared_ptr<Box> a) {
+  return [a] (shared_ptr<Box> b)->shared_ptr<Box>  {return core_splitEvery(a, b);};
 }

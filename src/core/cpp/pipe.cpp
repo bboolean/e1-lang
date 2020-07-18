@@ -13,21 +13,21 @@ auto pipe (auto a, auto b, auto c, auto d) {
 auto pipe (auto a, auto b, auto c, auto d, auto e) {
   return [a, b, c, d, e] (auto l) {return e(d(c(b(a(l)))));};
 };
-auto pipe (Box *a) {
+auto pipe (shared_ptr<Box> a) {
   return a;
 };
-auto pipe (Box *a, auto b) {
+auto pipe (shared_ptr<Box> a, auto b) {
   return b(a);
 };
-auto pipe (Box *a, auto b, auto c) {
+auto pipe (shared_ptr<Box> a, auto b, auto c) {
   return c(b(a));
 };
-auto pipe (Box *a, auto b, auto c, auto d) {
+auto pipe (shared_ptr<Box> a, auto b, auto c, auto d) {
   return d(c(b(a)));
 };
-auto pipe (Box *a, auto b, auto c, auto d, auto e) {
+auto pipe (shared_ptr<Box> a, auto b, auto c, auto d, auto e) {
   return e(d(c(b(a))));
 };
-auto pipe (Box *a, auto b, auto c, auto d, auto e, auto f) {
+auto pipe (shared_ptr<Box> a, auto b, auto c, auto d, auto e, auto f) {
   return f(e(d(c(b(a)))));
 };

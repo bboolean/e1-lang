@@ -27,7 +27,7 @@ module.exports = (compile) => ({
       R.join(';')
     )(elems);
 
-    return `[=] {\n${components};\nreturn new Box();}();`;
+    return `[=] {\n${components};\nreturn make_shared<Box>();}();`;
   },
   core_function: (elems) => {
     const params = R.pipe(
@@ -44,7 +44,7 @@ module.exports = (compile) => ({
     )};}`;
   },
   core_list: (elems) => {
-    return `new Box(vector<Box*>{${R.join(
+    return `make_shared<Box>(vector<shared_ptr<Box> >{${R.join(
       ', ',
       R.map(compile, elems)
     )}})`;
