@@ -24,6 +24,7 @@ Box* core_splitEvery(Box *SectionSize, Box *List)
   }
   return result;
 };
+
 auto core_splitEvery(Box *a) {
   return [a] (Box *b)->Box* {return core_splitEvery(a, b);};
 }
