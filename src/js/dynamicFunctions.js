@@ -73,4 +73,9 @@ readline.question(${compile(R.head(elems))}, (text) => {
   core_toNum: (elems) => {
     return `(+${R.join(' ', elems)})`;
   },
+  core_if: (elems) => {
+    return `(${compile(elems[0])} ? ${compile(
+      elems[1]
+    )} : ${compile(elems[2])})`;
+  },
 });
