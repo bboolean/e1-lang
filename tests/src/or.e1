@@ -1,6 +1,6 @@
 ($
-  (log (| true true))
-  (log (| false true))
-  (log (| true false))
-  (log (| false false))
+  (log (|| true true))
+  (log (|| false true))
+  (log (|| true false))
+  (log (|| false false))
 )

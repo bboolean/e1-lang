@@ -10,7 +10,7 @@ module.exports = {
   fileExtension: 'e1',
   languages: {
     js,
-    py,
+    // py,
     cpp,
   },
   corePath: __dirname + '/core',

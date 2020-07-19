@@ -1,16 +1,16 @@
-shared_ptr<Box> core_pipe (auto a) {
+auto core_pipe (auto a) {
   return [a] (auto l) {return a(l);};
 };
-shared_ptr<Box> core_pipe (auto a, auto b) {
+auto core_pipe (auto a, auto b) {
   return [a, b] (auto l) {return b(a(l));};
 };
-shared_ptr<Box> core_pipe (auto a, auto b, auto c) {
+auto core_pipe (auto a, auto b, auto c) {
   return [a, b, c] (auto l) {return c(b(a(l)));};
 };
-shared_ptr<Box> core_pipe (auto a, auto b, auto c, auto d) {
+auto core_pipe (auto a, auto b, auto c, auto d) {
   return [a, b, c, d] (auto l) {return d(c(b(a(l))));};
 };
-shared_ptr<Box> core_pipe (auto a, auto b, auto c, auto d, auto e) {
+auto core_pipe (auto a, auto b, auto c, auto d, auto e) {
   return [a, b, c, d, e] (auto l) {return e(d(c(b(a(l)))));};
 };
 shared_ptr<Box> core_pipe (shared_ptr<Box> a) {

@@ -66,7 +66,7 @@ module.exports = (compile) => ({
     return `(+${R.join(' ', elems)})`;
   },
   core_if: (elems) => {
-    return `(${compile(elems[0])} ? ${compile(
+    return `(${compile(elems[0])}->bool_leaf ? ${compile(
       elems[1]
     )} : ${compile(elems[2])})`;
   },

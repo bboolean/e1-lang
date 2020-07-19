@@ -42,8 +42,8 @@ module.exports = [
     replace: ')',
   },
 
-  { value: '|', replace: 'core_or' },
-  { value: '->', replace: 'core_pipe' },
+  { value: '||', replace: 'core_or' },
+  { value: '|', replace: 'core_pipe' },
   { value: '-', replace: 'core_subtract' },
   { value: '*', replace: 'core_multiply' },
   { value: '+', replace: 'core_add' },
