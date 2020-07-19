@@ -1,6 +1,6 @@
 {
   "name": "e1-lang",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "./index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "jest": "^26.1.0",
     "node-watch": "^0.6.4",
     "nodemon": "^2.0.4",
-    "picompiler": "^0.6.0",
+    "picompiler": "^0.9.0",
     "ramda": "^0.27.0"
   },
   "bin": {
