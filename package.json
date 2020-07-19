@@ -4,8 +4,8 @@
   "description": "",
   "main": "./src/index.js",
   "scripts": {
-    "start": "nodemon -e js,py,cpp --watch ./src ./bin/index.js ./examples/e1-lang.config.js",
-    "build_test": "nodemon -e js,py,cpp --watch ./src ./bin/index.js ./tests/e1-lang.config.js",
+    "start": "nodemon -e js,py,cpp --watch ./src ./node_modules/.bin/picompiler ./src/picompiler.config.js ./examples/e1-lang.config.js",
+    "build_test": "nodemon -e js,py,cpp --watch ./src ./node_modules/.bin/picompiler ./src/picompiler.config.js ./tests/e1-lang.config.js",
     "test": "jest"
   },
   "author": "",

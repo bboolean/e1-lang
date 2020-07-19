@@ -42,7 +42,7 @@ module.exports = [
     replace: ')',
   },
 
-  { value: '||', replace: 'core_or' },
+  { value: 'or', replace: 'core_or' },
   { value: '|', replace: 'core_pipe' },
   { value: '-', replace: 'core_subtract' },
   { value: '*', replace: 'core_multiply' },
@@ -55,7 +55,7 @@ module.exports = [
   { value: '++', replace: 'core_concat' },
   { value: '=', replace: 'core_equals' },
   { value: '%', replace: 'core_remainder' },
-  { value: '&', replace: 'core_and' },
+  { value: 'and', replace: 'core_and' },
   { value: '#', replace: 'core_function' },
   { value: '$', replace: 'core_commands' },
 
@@ -74,4 +74,5 @@ module.exports = [
   { value: 'import', isCore: true },
   { value: 'readline', isCore: true },
   { value: 'toNum', isCore: true },
+  { value: 'view', isCore: true },
 ];

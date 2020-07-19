@@ -9,7 +9,12 @@ module.exports = (
 
   const main = compile(ast, config.languages.js);
 
-  return `const core_curry2 = (fn) => (a, b) =>
+  return `const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+const core_curry2 = (fn) => (a, b) =>
   undefined !== b ? fn(a, b) : (b) => fn(a, b);
 
 const core_curry3 = (fn) => (a, b, c) =>

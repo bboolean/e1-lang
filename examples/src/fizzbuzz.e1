@@ -7,7 +7,7 @@ mapped (map
       
       buzz (if (= 0 (% num 5)) 'Buzz' '')
       
-      numText (if (|| fizz buzz) '' num)
+      numText (if (or fizz buzz) '' num)
       
       (++ fizz buzz numText)
     )

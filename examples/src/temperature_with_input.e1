@@ -1,9 +1,9 @@
-toCelsius (->
+toCelsius (|
   (- 32)
   (* (/ 5 9))
 )
 
-toFahrenheit (->
+toFahrenheit (|
   (* (/ 9 5))
   (+ 32)
 )
@@ -12,13 +12,13 @@ proc (# input
   (let
     num (toNum input)
     
-    celsiusText (->
+    celsiusText (|
       num
       toCelsius
       (# x (++ "\n" num "°F is " x "°C"))
     )
     
-    fahrenheitText (->
+    fahrenheitText (|
       num
       toFahrenheit
       (# x (++ "\n" num "°C is " x "°F"))

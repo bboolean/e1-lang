@@ -1,7 +1,7 @@
-const core_range = core_curry3((a, b, c = 1) => {
+const core_range = (a, b, c) => {
   const result = [];
-  for (let i = a; i <= b; i += c) {
+  for (let i = a; i <= b; i += c || 1) {
     result.push(i);
   }
   return result;
-});
+};

@@ -53,11 +53,11 @@ printBoardAndPrompt (# board turn
 
 validMove (# board num
   (let
-    isEmpty (= '_' (view (lensIndex num) board))
+    isEmpty (= '_' (view num board))
     
-    between1And9 (& (>= num 0) (<= num 8))
+    between1And9 (and (>= num 0) (<= num 8))
     
-    (& isEmpty between1And9)
+    (and isEmpty between1And9)
   )
 )
 
@@ -66,7 +66,7 @@ findIfWon (# board turn
     allEqTurn (all
       (# cell
         (let
-          value (view (lensIndex cell) board)
+          value (view cell board)
           
           (= turn value)
         )
